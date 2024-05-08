@@ -19,7 +19,7 @@ def crear_pdf(info):
     template = env.get_template(nombre_html)  # Pasar solo el nombre del archivo
     html = template.render(info)
 
-    option = {
+    options = {
         'margin-top': '0in',
         'margin-right': '0in',
         'margin-bottom': '0in',
@@ -29,11 +29,11 @@ def crear_pdf(info):
         'page-height': '3.2in'
     }
 
-    config = pdfkit.configuration(wkhtmltopdf=r'C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe')
+    config = pdfkit.configuration(wkhtmltopdf='/usr/bin/wkhtmltopdf')
     nombre_pdf = 'ticket.pdf'
     ruta_salida = os.path.join(directorio_script, nombre_pdf)
 
-    pdfkit.from_string(html, ruta_salida, configuration=config, options=option, css=ruta_css_completa)
+    pdfkit.from_string(html, ruta_salida, configuration=config, options=options, css=ruta_css_completa)
 
     return nombre_pdf
 
