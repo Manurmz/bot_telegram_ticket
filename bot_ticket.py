@@ -3,8 +3,7 @@ import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 import os
 
-from formato_fecha import convertir_formato
-from crear_pdf import crear_pdf
+from generador_ticket import crear_pdf
 from ocr_google import detect_text
 from ordenar_datos import ordenar
 from generar_json import json_actualizado
@@ -84,5 +83,10 @@ def handle_message(message):
         print('recivo enviado')
     else:
         bot.send_message(message.chat.id, "Por favor, introduce un valor numérico válido.")
+
+# Maneja el comando '/status'
+@bot.message_handler(commands=['status'])
+def send_welcome(message):
+    bot.reply_to(message, "Estado activo")
 
 bot.infinity_polling()
